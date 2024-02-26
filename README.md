@@ -29,12 +29,12 @@ cd bevfusion
 
 torchpack dist-run -np 8 python tools/train.py configs/nuscenes/det/transfusion/secfpn/camera+lidar/swint_v0p075/convfuser.yaml --model.encoders.camera.backbone.init_cfg.checkpoint pretrained/swint-nuimages-pretrained.pth --load_from pretrained/lidar-only-det.pth 
 ```
-Для расчета метрик нужно запустить tools/test.py после обучения
+Для расчета метрик нужно запустить `tools/test.py` после обучения
 
 ## Тестирование 
 
 Можно загрузить веса `./tools/download_pretrained.sh`
-Для тестирование модели нужно выполнить следующую команду
+Для тестирования модели нужно выполнить следующую команду
 
 ```
 torchpack dist-run -np 8 python tools/test.py configs/nuscenes/det/transfusion/secfpn/camera+lidar/swint_v0p075/convfuser.yaml pretrained/bevfusion-det.pth --eval bbox
