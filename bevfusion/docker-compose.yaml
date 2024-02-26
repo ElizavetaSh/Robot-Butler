@@ -1,0 +1,23 @@
+version: "2.3"
+services:
+  3detection:
+    image: detect_nvidia:develop
+    container_name: 3ddetection
+    build:
+      context: ./testing/
+      shm_size: "50gb"
+      dockerfile:  Dockerfile
+    volumes:
+      - ./testing/:/app
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+          size: 50000000000 # ~16gb
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0,1,2,3,4
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    ports:
+      - "23050:22"
+    command: >
+     bash -c "sleep 10d"
